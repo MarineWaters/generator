@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<h1>{{ template.name }}</h1>
+<img src="{{ template.image.url }}" alt="{{ template.name }}">
+<form method="post">
+    {% csrf_token %}
+    <textarea name="latex_text">{{ template.latex_text }}</textarea>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
+
+</body>
+</html>
