@@ -2,3 +2,9 @@ body {
     background: white url("images/background.jpg") no-repeat;
     background-size: cover;
 }
+textarea {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    top: 150px; left: 500px; bottom: 0; right: 0;
+}

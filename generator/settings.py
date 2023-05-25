@@ -15,18 +15,15 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '')
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-1o6pgr$z4i0ky^a0)g0_#th)of85_na8gln$ui@&db6z1d&-6k'
 
+ADMINS = [("Juliana", "urodionova@bk.ru")]
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docsgen.apps.DocsgenConfig',
+    'django_tex',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +54,11 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'generator.urls'
 
 TEMPLATES = [
+    {
+        'NAME': 'tex',
+        'BACKEND': 'django_tex.engine.TeXEngine',
+        'APP_DIRS': True,
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates']
@@ -116,7 +119,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
+
+MEDIA_URL = '/'  # URL для медии в шаблонах
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # пустая папка, сюда будет собирать статику collectstatic
+
+STATIC_URL = '/static/'  # URL для шаблонов
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

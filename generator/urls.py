@@ -22,7 +22,8 @@ from django.views.generic import RedirectView
 from generator import settings
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='docsgen/', permanent=True)),
-    path("docsgen/", include("docsgen.urls")),
-    path("admin/", admin.site.urls),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('', RedirectView.as_view(url='docsgen/', permanent=True)),
+                  path("docsgen/", include("docsgen.urls")),
+                  path("admin/", admin.site.urls),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
+              static(settings.STATIC_URL, document_root=settings.MEDIA_ROOT)

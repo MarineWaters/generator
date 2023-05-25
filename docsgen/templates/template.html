@@ -1,21 +1,24 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'style.css' %}">
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Text Field</title>
 </head>
 <body>
 {% block content %}
-<h1>{{ template.name }}</h1>
-<img src="{{ template.image.url }}" alt="{{ template.name }}">
-<form method="post">
-    {% csrf_token %}
-    <textarea name="latex_text">{{ template.latex_text }}</textarea>
-    <button type="submit">Save</button>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        <label>
+        <textarea name="latex_text">{{ template.latex_text }}</textarea>
+        </label>
+        <button type="submit">Помощь</button>
+        <button type="submit">Настройки</button>
+    </form>
+<form method="post" action="{% url 'save_and_convert' %}">
+    <button type="submit">Сохранить</button>
+    </form>
 {% endblock %}
-
 </body>
 </html>
